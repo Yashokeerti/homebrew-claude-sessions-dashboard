@@ -2,7 +2,7 @@ class ClaudeSessionsDashboard < Formula
   desc "Local web dashboard to view and manage Claude Code sessions"
   homepage "https://github.com/Yashokeerti/claude-sessions-dashboard"
   url "https://github.com/Yashokeerti/claude-sessions-dashboard/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "5b504212f0ab19a7d2ac466dbecffa3662cc737b279b62bf68539f4e50bfc3b7"
+  sha256 "6ca3f86922101739dea68328097a2eace8b611a019bd396f4ed61211eb411e99"
   license "MIT"
 
   depends_on "python@3"
@@ -52,7 +52,6 @@ class ClaudeSessionsDashboard < Formula
   end
 
   test do
-    # Verify the script can be imported
     system Formula["python@3"].opt_bin/"python3", "-c",
            "import sys; sys.path.insert(0, '#{libexec}/claude_sessions_dashboard'); import dashboard"
   end
