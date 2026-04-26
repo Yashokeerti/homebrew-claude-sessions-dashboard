@@ -2,7 +2,7 @@ class ClaudeSessionsDashboard < Formula
   desc "Local web dashboard to view and manage Claude Code sessions"
   homepage "https://github.com/Yashokeerti/claude-sessions-dashboard"
   url "https://github.com/Yashokeerti/claude-sessions-dashboard/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "b58f511b43780efd277526f578d3c2fd31c0772555b426d62c9e19447f0ad64f"
+  sha256 "ecf29dde671980092950792b6ebc06bb8e60cf9831a4328cca4f5616d9f0360c"
   license "MIT"
 
   depends_on "python@3"
@@ -12,15 +12,19 @@ class ClaudeSessionsDashboard < Formula
     libexec.install Dir["src/*"]
     libexec.install "pyproject.toml"
 
-    # Create wrapper script
-    (bin/"claude-sessions").write <<~EOS
-      #!/bin/bash
-      exec "#{Formula["python@3"].opt_bin}/python3" -c "
+    # Create Python entry point script
+    (libexec/"run.py").write <<~EOS
+      #!/usr/bin/env python3
       import sys
       sys.path.insert(0, '#{libexec}/claude_sessions_dashboard')
       from dashboard import main
       main()
-      " "$@"
+    EOS
+
+    # Create wrapper script
+    (bin/"claude-sessions").write <<~EOS
+      #!/bin/bash
+      exec "#{Formula["python@3"].opt_bin}/python3" "#{libexec}/run.py" "$@"
     EOS
   end
 
