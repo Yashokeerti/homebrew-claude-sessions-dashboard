@@ -2,7 +2,7 @@ class ClaudeSessionsDashboard < Formula
   desc "Local web dashboard to view and manage Claude Code sessions"
   homepage "https://github.com/Yashokeerti/claude-sessions-dashboard"
   url "https://github.com/Yashokeerti/claude-sessions-dashboard/archive/refs/tags/v1.0.0.tar.gz"
-  sha256 "ecf29dde671980092950792b6ebc06bb8e60cf9831a4328cca4f5616d9f0360c"
+  sha256 "5b504212f0ab19a7d2ac466dbecffa3662cc737b279b62bf68539f4e50bfc3b7"
   license "MIT"
 
   depends_on "python@3"
