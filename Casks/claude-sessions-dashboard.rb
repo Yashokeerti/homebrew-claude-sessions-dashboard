@@ -9,15 +9,24 @@ cask "claude-sessions-dashboard" do
 
   app "Claude Sessions.app"
 
+  postflight do
+    system_command "/usr/bin/xattr",
+                   args: ["-cr", "#{appdir}/Claude Sessions.app"],
+                   sudo: false
+  end
+
   zap trash: [
     "~/Library/Application Support/Claude Sessions",
   ]
 
   caveats <<~EOS
-    Claude Sessions Dashboard has been installed to ~/Applications.
+    Claude Sessions Dashboard has been installed to /Applications.
 
     The app starts a local Python server and opens a native WebView.
     Requires Python 3.8+ installed on your system.
+
+    If macOS says the app is damaged, run:
+      xattr -cr /Applications/Claude\\ Sessions.app
 
     You can also use the CLI version:
       brew tap Yashokeerti/claude-sessions-dashboard
